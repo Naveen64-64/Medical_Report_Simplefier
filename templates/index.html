@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Report Simplifier - Understand Your Health</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🩺</span> Medical Report Simplifier
+            </a>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <button id="nav-btn-start" class="btn-primary">Get Started</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Tab Indicators for Navigation -->
+        <div class="slider-tabs">
+            <button id="tab-slide-1" class="tab-btn active">1. About the Project</button>
+            <button id="tab-slide-2" class="tab-btn">2. Upload & Simplify</button>
+        </div>
+
+        <!-- Slides Wrapper -->
+        <div class="slider-container">
+            <div class="slides-wrapper" id="slides-wrapper">
+                
+                <!-- Slide 1: Explanation of the project -->
+                <div class="slide-item active" id="slide-1">
+                    <div class="glass-card explanation-card">
+                        <h2>Translate Complex Medical Jargon into Plain Language</h2>
+                        <p class="intro-p">Lab values, scan summaries, and clinic terminology can be frightening and confusing. Our AI-driven assistant simplifies medical documents so you can understand your results and discuss them productively with your physician.</p>
+                        
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <span class="feature-icon">🔍</span>
+                                <h4>Terms & Abbreviations Explained</h4>
+                                <p>MRI, CBC, EEG, hyperintensity, creatinine... We translate abbreviations and clinical vocabulary into everyday definitions.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🌐</span>
+                                <h4>Multi-Language Simplification</h4>
+                                <p>Simplify your report directly into Spanish, French, Hindi, Chinese, and more. Ideal for non-native English speakers.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">💬</span>
+                                <h4>Interactive Follow-Up Assistant</h4>
+                                <p>Have extra questions? Chat with our medical AI bot to clarify specific parameters, glossaries, or suggestions.</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🔒</span>
+                                <h4>Secure & Confidential</h4>
+                                <p>All data is processed strictly under secure guidelines. We protect your clinical privacy.</p>
+                            </div>
+                        </div>
+
+                        <div class="explanation-footer">
+                            <button id="btn-next-slide" class="btn-primary btn-large">Upload Your Report Now ➔</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Input container -->
+                <div class="slide-item" id="slide-2">
+                    <div class="glass-card upload-card-container">
+                        <h2>Upload Clinical Document</h2>
+                        <p class="upload-p">Select or drag in your report, and select your preferred output language.</p>
+
+                        <form id="upload-form">
+                            <!-- Drag and Drop Zone -->
+                            <div class="drop-zone" id="drop-zone">
+                                <div class="upload-icon">📥</div>
+                                <h3>Drag and drop your report here</h3>
+                                <p class="drop-text-sub">or click to browse local storage</p>
+                                <span class="supported-formats">Supports PDF, PNG, JPG, JPEG, TIFF (Max 16MB)</span>
+                            </div>
+                            <input type="file" id="file-input" name="file" accept=".pdf, .png, .jpg, .jpeg, .tiff" style="display: none;">
+                            
+                            <!-- File Selected Info -->
+                            <div class="file-status" id="file-status">
+                                <div class="file-info">
+                                    <span class="file-icon-badge">📄</span>
+                                    <div class="file-info-text">
+                                        <div class="file-name" id="file-name">filename.pdf</div>
+                                        <div class="file-size" id="file-size">(0.00 MB)</div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-remove" id="btn-remove" title="Remove file">✕</button>
+                            </div>
+
+                            <!-- Target Language Dropdown Selector -->
+                            <div class="upload-language-select">
+                                <label for="select-lang-upload">Target Output Language:</label>
+                                <select id="select-lang-upload" class="select-translate">
+                                    <option value="en">English (Default)</option>
+                                    <option value="es">Spanish (Español)</option>
+                                    <option value="fr">French (Français)</option>
+                                    <option value="de">German (Deutsch)</option>
+                                    <option value="hi">Hindi (हिन्दी)</option>
+                                    <option value="te">Telugu (తెలుగు)</option>
+                                    <option value="ta">Tamil (தமிழ்)</option>
+                                    <option value="zh">Chinese (中文)</option>
+                                </select>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="action-container flex-actions">
+                                <button type="button" id="btn-prev-slide" class="btn-secondary">✕ Back to Info</button>
+                                <button type="submit" class="btn-submit" id="btn-submit" disabled>Simplify Report</button>
+                            </div>
+                        </form>
+
+                        <!-- Loader -->
+                        <div class="loader-wrapper" id="loader-wrapper">
+                            <div class="spinner"></div>
+                            <div class="loader-text">Extracting report text & simplifying medical terms...</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Medical Report Simplifier. All translations and simplifications are AI-generated and for educational purposes only.</p>
+    </footer>
+
+    <!-- Custom Modal Popup Screen Message -->
+    <div id="custom-alert-modal" class="custom-modal-overlay">
+        <div class="custom-modal-card">
+            <div class="custom-modal-header">
+                <span class="custom-modal-icon">⚠️</span>
+                <h3 id="custom-modal-title">System Alert</h3>
+            </div>
+            <div class="custom-modal-body">
+                <p id="custom-modal-message">An unexpected error occurred. Please try again.</p>
+            </div>
+            <div class="custom-modal-footer">
+                <button id="custom-modal-close-btn" class="btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

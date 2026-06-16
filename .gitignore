@@ -1,0 +1,35 @@
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache / compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Databases
+database.db
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment variables (Sensitive!)
+.env
+.env.local
+.env.*.local
+.env.development
+.env.test
+.env.production
+
+# Uploaded medical reports (Sensitive & local files)
+static/uploads/*
+!static/uploads/.gitkeep
+
+# IDEs & System files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
